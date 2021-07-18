@@ -1,3 +1,3 @@
-# nwitter
+# Nwitter
 
-> do-it 트위터 클론코딩 베타테스터
+Twitter (mini)clone with React and Firebase
