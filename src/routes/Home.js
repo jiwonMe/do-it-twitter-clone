@@ -1,23 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { dbService } from 'firebase.config'
+import Nweet from 'components/Nweet'
 
 
 const Home = ({userObj}) => {
     const [nweet, setNweet] = useState('')
     const [nweetList, setNweetList] = useState([])
 
-    const getNweets = async () => {
-        const dbNweets = await dbService.collection('nweets').get()
-        dbNweets.forEach((document) =>
-            {
-                const nweetObject = {...document.data(), id: document.id}
-                setNweetList((prev) => [nweetObject, ...prev])
-            }
-        )
-    }
-
     useEffect(() => {
-        getNweets()
+        dbService.collection('nweets').onSnapshot((snapshot) => {
+            const newArray = snapshot.docs.map((document => ({
+                id: document.id,
+                ...document.data(),
+            })))
+            setNweetList(newArray)
+        })
     }, [])
 
     const onSubmit = async (event) => {
@@ -51,9 +48,11 @@ const Home = ({userObj}) => {
             </form>
             <div>
                 {nweetList.map((nweet) => (
-                    <div key={nweet.id}>
-                        <h4>{nweet.text}</h4>
-                    </div>
+                    <Nweet
+                        key={nweet.id}
+                        nweetObj={nweet}
+                        isOwner={nweet.creatorId === userObj.uid}
+                    />
                 ))}
             </div>
         </>
