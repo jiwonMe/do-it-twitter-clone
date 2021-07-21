@@ -1,6 +1,6 @@
 import { faPencilAlt, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { dbService, storageService } from "firebase.config";
+import { dbService, storageService, authService } from "firebase.config";
 import { useState } from "react";
 
 
@@ -55,17 +55,26 @@ const Nweet = ({ nweetObj, isOwner }) => {
         </>
       ) : (
         <>
-          <h4>{nweetObj.text}</h4>
+          <div className='nweet__username'>
+            {nweetObj.creatorDisplayName || 'someone'}
+            <div className='nweet__creator-id'>
+              @{nweetObj.creatorId}
+            </div>
+          </div>
+          <p className='nweet__text'>{nweetObj.text}</p>
+          <div className='nweet__created-at'>
+            {Date(nweetObj.createdAt)}
+          </div>
           {nweetObj.attachmentUrl && (
-            <img src={nweetObj.attachmentUrl} width='50px' height='50px' />
+            <img src={nweetObj.attachmentUrl} />
           )}
           {isOwner && (
             <div className='nweet__actions'>
               <span onClick={onDeleteClick}>
-                <FontAwesomeIcon icon={faTrash} />
+                <FontAwesomeIcon icon={faTrash} color={'#A0A0A0'} />
               </span>
               <span onClick={toggleEditing}>
-                <FontAwesomeIcon icon={faPencilAlt} />
+                <FontAwesomeIcon icon={faPencilAlt} color={'#A0A0A0'} />
               </span>
             </div>
           )}

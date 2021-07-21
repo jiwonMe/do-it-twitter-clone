@@ -1,5 +1,12 @@
 @import "https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css";
 
+@font-face {
+  font-family: 'Pretendard-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+  font-weight: 360;
+  font-style: normal;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -11,11 +18,11 @@ input {
 }
 
 body {
-  background-color: black;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+  background-color: rgb(255, 255, 255);
+  font-family: 'Pretendard-Regular', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 14px;
-  color: white;
+  color: rgb(46, 46, 46);
 }
 
 button {
@@ -39,7 +46,7 @@ form {
 
 .container {
   width: 100%;
-  max-width: 320px;
+  max-width: 360px;
   display: flex;
   flex-direction: column;
 }
@@ -106,7 +113,7 @@ form {
   flex-grow: 1;
   height: 40px;
   padding: 0px 20px;
-  color: white;
+  color: rgb(10, 10, 10);
   border: 1px solid #04aaff;
   border-radius: 20px;
   font-weight: 500;
@@ -142,9 +149,10 @@ form {
 }
 
 .factoryForm__attachment img {
-  height: 80px;
-  width: 80px;
-  border-radius: 40px;
+  max-width: 300px;
+  max-height: 300px;
+  border-radius: 1em;
+  margin-bottom: 1em;
 }
 
 .factoryForm__clear {
@@ -167,16 +175,21 @@ form {
 }
 
 .nweet {
-  margin-bottom: 20px;
   background-color: white;
   width: 100%;
-  max-width: 320px;
+  max-width: 360px;
   padding: 20px;
-  border-radius: 10px;
+  border-top: 1px solid #a3a3a3;
+  /* border-bottom: 1px solid #a3a3a3; */
   position: relative;
   display: flex;
   flex-direction: column;
   color: rgba(0, 0, 0, 0.8);
+  line-height: 1.3;
+}
+
+.nweet:hover {
+  background-color: rgb(231, 231, 231);
 }
 
 .nweet h4 {
@@ -184,19 +197,20 @@ form {
 }
 
 .nweet img {
-  right: -10px;
-  top: 20px;
-  position: absolute;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  border-radius: 1em;
   margin-top: 10px;
+  width: 100%;
+  border: 1px solid #e0e0e0;
+}
+
+.nweet__text {
+  margin-bottom: 1em;
 }
 
 .nweet__actions {
   position: absolute;
   right: 10px;
-  top: 10px;
+  top: 1em;
 }
 
 .nweet__actions span {
@@ -205,6 +219,22 @@ form {
 
 .nweet__actions span:first-child {
   margin-right: 10px;
+}
+
+.nweet__username{
+  font-weight: bold;
+  color:#04aaff;
+  margin-bottom: 1em;
+}
+
+.nweet__creator-id {
+  font-weight: normal;
+  color:rgb(145, 145, 145)
+}
+
+.nweet__created-at{
+  font-weight: normal;
+  color:rgb(145, 145, 145);
 }
 
 /* Auth */
@@ -219,29 +249,34 @@ form {
 
 .authBtns {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   width: 100%;
-  max-width: 320px;
+  max-width: 360px;
 }
 
 .authBtn {
   cursor: pointer;
   border-radius: 20px;
-  border: none;
+  border: 1px solid #9b9b9b;
+  color:#666666;
   padding: 10px 0px;
   font-size: 12px;
   text-align: center;
-  width: 150px;
+  width: 100%;
   background: white;
   cursor: pointer;
+  margin-bottom: 10px;
 }
 
 /* AuthForm */
 
 .authInput {
-  max-width: 320px;
+  border: 1px solid #9c9c9c;
+  max-width: 360px;
   width: 100%;
   padding: 10px;
+  padding-left: 1em;
   border-radius: 30px;
   background-color: rgba(255, 255, 255, 1);
   margin-bottom: 10px;
@@ -250,6 +285,7 @@ form {
 }
 
 .authSubmit {
+  border: none;
   text-align: center;
   background: #04aaff;
   color: white;

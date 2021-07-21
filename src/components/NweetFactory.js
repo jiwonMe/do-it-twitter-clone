@@ -26,6 +26,7 @@ const NweetFactory = ({ userObj }) => {
         await dbService.collection("nweets").add({
             text: nweet,
             createdAt: Date.now(),
+            creatorDisplayName: userObj.displayName,
             creatorId: userObj.uid,
             attachmentUrl
         });
@@ -56,7 +57,6 @@ const NweetFactory = ({ userObj }) => {
         if (Boolean(theFile)) {
             reader.readAsDataURL(theFile)
         }
-        reader.readAsDataURL(theFile);
     };
 
     const onClearAttachment = () => setAttachment('')
@@ -69,7 +69,7 @@ const NweetFactory = ({ userObj }) => {
                     value={nweet}
                     onChange={onChange}
                     type='text'
-                    placeholder="What's on your mind?"
+                    placeholder="What's happening?"
                     maxLength={120}
                 />
                 <input type='submit' value='&rarr;' className='factoryInput__arrow' />
